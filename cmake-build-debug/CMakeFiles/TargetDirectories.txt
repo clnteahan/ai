@@ -1,3 +1,0 @@
-C:/Users/cjose/CLionProjects/Smart/cmake-build-debug/CMakeFiles/Smart.dir
-C:/Users/cjose/CLionProjects/Smart/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/cjose/CLionProjects/Smart/cmake-build-debug/CMakeFiles/rebuild_cache.dir
