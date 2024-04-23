@@ -22,7 +22,19 @@ public:
         file.close();
     }
 
-    static string readFromFile(const string &filename) {
+    static int fileLines(const string &filename) {
+        ifstream file;
+        file.open(filename);
+        string line;
+        int i = 0;
+        while (getline(file, line)) {
+            i++;
+        }
+        file.close();
+        return i;
+    }
+
+    static string readFile(const string &filename) {
         ifstream file;
         file.open(filename);
         string data;
@@ -34,7 +46,21 @@ public:
         return data;
     }
 
-    static void appendToFile(const string &filename, const string &data) {
+    static string* readLines(const string &filename) {
+        ifstream file;
+        file.open(filename);
+        auto* data = new string[fileLines(filename)];
+        string line;
+        int i = 0;
+        while (getline(file, line)) {
+            data[i] = line;
+            i++;
+        }
+        file.close();
+        return data;
+    }
+
+    static void appendFile(const string &filename, const string &data) {
         ofstream file;
         file.open(filename, ios::app);
         file << data;

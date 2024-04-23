@@ -5,4 +5,7 @@ set(CMAKE_CXX_STANDARD 23)
 
 add_executable(Smart main.cpp
         fmgr.hpp
-        Brain.hpp)
+        Brain.hpp
+        Brain.cpp
+        Data.cpp
+        Data.h)
