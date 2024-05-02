@@ -1,26 +1,45 @@
 #include <iostream>
 #include "fmgr.hpp"
 #include "Brain.hpp"
+#include "Data.hpp"
 
 using namespace std;
 
-void load() {
-    string data[183][24] = {};
-    string *unproc = FileManager::readLines("C:/Programming/Projects/C++/Data/decision_tree.csv");
-    //cout << unproc[0];
-    for (int i = 0; i < 183; i++) {
-        for (int j = 0; j < 24; j++) {
-            data[i][j] = unproc[i].substr(0, unproc[i].find(','));
-            unproc[i] = unproc->substr(unproc[i].find(',') + 1);
-        }
-    }
-    for (int i = 0; i < 183; i++) {
-        cout << unproc[i] << endl;
+bool goodBad(string in) {
+    const string good = "A+,A,A-,B+,B,B-";
+    if (good.contains(in)) {
+        return true;
+    } else {
+        return false;
     }
 }
 
-int main() {
-    cout << "Hello, World!" << endl;
+void load() {
+    Data data[100][24] = {};
+    vector<string> unproc = FileManager::readLines("C:/Programming/Projects/C++/Data/decision_tree.csv");
+    unproc.shrink_to_fit();
+
+    for (auto it = unproc.begin(); it != unproc.end(); it++) {
+        //cout << *it << endl;
+    }
+    //cout << unproc[0];
+    for (int i = 0; i < 100; i++) {
+        for (int j = 0; j < 24; j++) {
+            data[i][j] = unproc.at(i + 1).substr(0, unproc[i + 1].find(','));
+            unproc[i + 1] = unproc.at(i + 1).substr(unproc[i + 1].find(',') + 1);
+        }
+    }
+
+    for (int i = 0; i < 100; i++) {
+        for (int j = 0; j < 24; j++) {
+            cout << ((string) data[i][j]) << " ";
+        }
+        cout << endl;
+    }
+}
+
+int main() { 
+    cout << "Hello, World!" << endl << endl;
     /*FileManager::writeToFile(R"(C:\Programming\Projects\Save\test.txt)", "Hello, World!");
     auto b1 = Brain(10);
     auto b2 = Brain(20);
@@ -28,7 +47,7 @@ int main() {
     try {
         load();
     } catch (exception &e) {
-        cout << e.what() << endl;
+        cout << "Error: " << e.what() << endl;
     }
     return 0;
 }

@@ -8,4 +8,5 @@ add_executable(Smart main.cpp
         Brain.hpp
         Brain.cpp
         Data.cpp
-        Data.h)
+        Data.hpp
+)

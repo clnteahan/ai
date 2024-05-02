@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <vector>
 
 using namespace std;
 class FileManager {
@@ -46,14 +47,14 @@ public:
         return data;
     }
 
-    static string* readLines(const string &filename) {
+    static vector<string> readLines(const string &filename) {
         ifstream file;
         file.open(filename);
-        auto* data = new string[fileLines(filename)];
+        vector<string> data;
         string line;
         int i = 0;
         while (getline(file, line)) {
-            data[i] = line;
+            data.push_back(line);
             i++;
         }
         file.close();
