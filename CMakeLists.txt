@@ -9,4 +9,6 @@ add_executable(Smart main.cpp
         Brain.cpp
         Data.cpp
         Data.hpp
+        Tree/Tree.h
+        Tree/Node.h
 )

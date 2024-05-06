@@ -2,11 +2,12 @@
 #include "fmgr.hpp"
 #include "Brain.hpp"
 #include "Data.hpp"
+#include "Tree/Tree.h"
 
 using namespace std;
 
 bool goodBad(string in) {
-    const string good = "A+,A,A-,B+,B,B-";
+    const string good = "A+,A,A-";
     if (good.contains(in)) {
         return true;
     } else {
@@ -30,9 +31,22 @@ void load() {
         }
     }
 
-    for (int i = 0; i < 100; i++) {
-        for (int j = 0; j < 24; j++) {
-            cout << ((string) data[i][j]) << " ";
+    for (auto & i : data) {
+        // 0, 1, 3, 5, 6, 9, 10, 14, 16
+        i[0] = goodBad((string) i[0]);
+        i[1] = goodBad((string) i[1]);
+        i[3] = goodBad((string) i[3]);
+        i[5] = goodBad((string) i[5]);
+        i[6] = goodBad((string) i[6]);
+        i[9] = goodBad((string) i[9]);
+        i[10] = goodBad((string) i[10]);
+        i[14] = goodBad((string) i[14]);
+        i[16] = goodBad((string) i[16]);
+    }
+
+    for (auto & i : data) {
+        for (const auto & j : i) {
+            cout << ((string) j) << " ";
         }
         cout << endl;
     }
@@ -40,14 +54,12 @@ void load() {
 
 int main() { 
     cout << "Hello, World!" << endl << endl;
-    /*FileManager::writeToFile(R"(C:\Programming\Projects\Save\test.txt)", "Hello, World!");
-    auto b1 = Brain(10);
-    auto b2 = Brain(20);
-    cout << "Brain 1 size: " << b1.getSize() << endl;*/
-    try {
+    Tree<int> tree;
+    cout << "Root: " << tree.getRoot() << endl;
+    /*try {
         load();
     } catch (exception &e) {
         cout << "Error: " << e.what() << endl;
-    }
+    }*/
     return 0;
 }

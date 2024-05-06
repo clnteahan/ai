@@ -8,6 +8,12 @@
 
 #include <string>
 
+enum Types {
+    STRING = 1,
+    INTEGER = 2,
+    BOOLEAN = 3
+};
+
 class Data {
 private:
     int type;
@@ -22,21 +28,39 @@ public:
     }
 
     Data& operator=(const std::string &data) {
+        reset();
         this->sData = data;
         this->type = 1;
         return *this;
     }
 
     Data& operator=(int data) {
+        reset();
         this->iData = data;
         this->type = 2;
         return *this;
     }
 
     Data& operator=(bool data) {
+        reset();
         this->bData = data;
         this->type = 3;
         return *this;
+    }
+    [[nodiscard]] Types getType() const {
+        return static_cast<Types>(type);
+    }
+
+    [[nodiscard]] std::string getString() const {
+        return sData;
+    }
+
+    [[nodiscard]] int getInt() const {
+        return iData;
+    }
+
+    [[nodiscard]] bool getBool() const {
+        return bData;
     }
 
     explicit operator std::string() const {
